@@ -1,5 +1,5 @@
 # data files
-data/npz_files
-data/png_files
+data/npz_files/*
+data/png_files/*
 #byte compiled
 __pycache__/
