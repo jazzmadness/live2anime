@@ -2,10 +2,8 @@
 
 # load, split and scale the maps dataset ready for training
 from os import listdir
-from numpy import asarray
-from numpy import vstack
-from keras.preprocessing.image import img_to_array
-from keras.preprocessing.image import load_img
+import numpy as np
+from keras.preprocessing.image import img_to_array, load_img
 
 # load all images in a directory into memory
 def load_images(path, size=(256,512)):
@@ -18,4 +16,4 @@ def load_images(path, size=(256,512)):
 		pixels = img_to_array(pixels)
 		#appending to list
 		pixel_list.append(pixels)
-	return asarray(pixels_list)
+	return np.asarray(pixel_list)

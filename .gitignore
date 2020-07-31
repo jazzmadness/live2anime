@@ -1,4 +1,5 @@
 # data files
-live2anime/data
+data/npz_files
+data/png_files
 #byte compiled
 __pycache__/
