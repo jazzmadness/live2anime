@@ -7,7 +7,7 @@ import numpy as np
 from keras.preprocessing.image import img_to_array, load_img
 
 # load all images in a directory into memory
-def load_images(path, size=(256,512)):
+def load_images(path, size=(256,256)):
 	pixel_list = list()
 	# enumerate filenames in directory, assume all are images
 	for filename in glob.glob(path + '*.png'):
