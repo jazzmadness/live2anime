@@ -1,7 +1,8 @@
 #for real, all this is from https://machinelearningmastery.com/how-to-develop-a-pix2pix-gan-for-image-to-image-translation/
+#with minor modifications
 
 # load, split and scale the maps dataset ready for training
-from os import listdir
+import glob
 import numpy as np
 from keras.preprocessing.image import img_to_array, load_img
 
@@ -9,9 +10,9 @@ from keras.preprocessing.image import img_to_array, load_img
 def load_images(path, size=(256,512)):
 	pixel_list = list()
 	# enumerate filenames in directory, assume all are images
-	for filename in listdir(path):
+	for filename in glob.glob(path + '*.png'):
 		# load and resize the image
-		pixels = load_img(path + filename, target_size=size)
+		pixels = load_img(filename, target_size=size)
 		# convert to numpy array
 		pixels = img_to_array(pixels)
 		#appending to list
