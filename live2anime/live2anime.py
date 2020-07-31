@@ -26,11 +26,11 @@ def load_images(path, size=(256,512)):
 	return [asarray(src_list), asarray(tar_list)]
 
 # dataset path
-path = 'maps/train/'
+path = 'data/'
 # load dataset
 [src_images, tar_images] = load_images(path)
 print('Loaded: ', src_images.shape, tar_images.shape)
 # save as compressed numpy array
-filename = 'maps_256.npz'
+filename = 'data/pictures.npz'
 savez_compressed(filename, src_images, tar_images)
 print('Saved dataset: ', filename)
