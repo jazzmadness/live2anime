@@ -1,3 +1,4 @@
+#alias to use on fish shell to save time when commiting on git
 function lazygit -d 'adds all files in repository, commits, and pushes to current branch' -a message
     set -q message[1]
     and set message -m $message
