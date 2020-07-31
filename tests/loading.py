@@ -1,20 +1,21 @@
 import numpy as np
 from matplotlib import pyplot
-from dataprep.loading import load_images
+from live2anime.dataprep.loading import load_images
+
 # dataset path
-path = '../data/png_files/'
+path = 'data/png_files/'
 # load dataset
 images = load_images(path)
 print('Loaded: ', images.shape)
 
 # save as compressed numpy array
-filename = '../data/npz_files/pictures.npz'
+filename = 'data/npz_files/pictures.npz'
 np.savez_compressed(filename, images)
 print('Saved dataset: ', filename)
 
 # load the prepared dataset
 # load the dataset
-data = np.load('../data/npz_files/pictures.npz')
+data = np.load('data/npz_files/pictures.npz')
 images = data['arr_0']
 print('Loaded: ', images.shape)
 # plot images
