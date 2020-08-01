@@ -14,7 +14,9 @@ def define_encoder_block(layer_in, n_filters, batchnorm=True):
 	# weight initialization
 	init = RandomNormal(stddev=0.02)
 	# add downsampling layer
-	g = Conv2D(n_filters, (4,4), strides=(2,2), padding='same', kernel_initializer=init)(layer_in)
+	g = Conv2D(filters=n_filters, kernel_size=(4,4),
+			   strides=(2,2), padding='same',
+			   kernel_initializer=init)(layer_in)
 	# conditionally add batch normalization
 	if batchnorm:
 		g = BatchNormalization()(g, training=True)
@@ -27,7 +29,9 @@ def decoder_block(layer_in, skip_in, n_filters, dropout=True):
 	# weight initialization
 	init = RandomNormal(stddev=0.02)
 	# add upsampling layer
-	g = Conv2DTranspose(n_filters, (4,4), strides=(2,2), padding='same', kernel_initializer=init)(layer_in)
+	g = Conv2DTranspose(filters=n_filters, kernel_size=(4,4),
+					    strides=(2,2), padding='same',
+						kernel_initializer=init)(layer_in)
 	# add batch normalization
 	g = BatchNormalization()(g, training=True)
 	# conditionally add dropout
@@ -54,7 +58,9 @@ def define_generator(image_shape=(256,256,3)):
 	e6 = define_encoder_block(e5, 512)
 	e7 = define_encoder_block(e6, 512)
 	# bottleneck, no batch norm and relu
-	b = Conv2D(512, (4,4), strides=(2,2), padding='same', kernel_initializer=init)(e7)
+	b = Conv2D(filters=512, kernel_size=(4,4),
+	 		   strides=(2,2), padding='same',
+			   kernel_initializer=init)(e7)
 	b = Activation('relu')(b)
 	# decoder model
 	d1 = decoder_block(b, e7, 512)
@@ -65,7 +71,9 @@ def define_generator(image_shape=(256,256,3)):
 	d6 = decoder_block(d5, e2, 128, dropout=False)
 	d7 = decoder_block(d6, e1, 64, dropout=False)
 	# output
-	g = Conv2DTranspose(3, (4,4), strides=(2,2), padding='same', kernel_initializer=init)(d7)
+	g = Conv2DTranspose(filters=3, kernel_size=(4,4),
+					    strides=(2,2), padding='same',
+						kernel_initializer=init)(d7)
 	out_image = Activation('tanh')(g)
 	# define model
 	model = Model(in_image, out_image)

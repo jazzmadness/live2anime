@@ -19,31 +19,31 @@ def define_discriminator(image_shape):
     # concatenate images channel-wise
     merged = Concatenate()([in_src_image, in_target_image])
     # C64
-    d = Conv2D(filters=64, kernel_side=(4, 4),
+    d = Conv2D(filters=64, kernel_size=(4, 4),
                strides=(2, 2), padding='same', kernel_initializer=init)(merged)
     d = LeakyReLU(alpha=0.2)(d)
     # C128
-    d = Conv2D(filters=128, kernel_side=(4, 4),
+    d = Conv2D(filters=128, kernel_size=(4, 4),
                strides=(2, 2), padding='same', kernel_initializer=init)(d)
     d = BatchNormalization()(d)
     d = LeakyReLU(alpha=0.2)(d)
     # C256
-    d = Conv2D(filters=256, kernel_side=(4, 4),
+    d = Conv2D(filters=256, kernel_size=(4, 4),
                strides=(2, 2), padding='same', kernel_initializer=init)(d)
     d = BatchNormalization()(d)
     d = LeakyReLU(alpha=0.2)(d)
     # C512
-    d = Conv2D(filters=512, kernel_side=(4, 4),
+    d = Conv2D(filters=512, kernel_size=(4, 4),
                strides=(2, 2), padding='same', kernel_initializer=init)(d)
     d = BatchNormalization()(d)
     d = LeakyReLU(alpha=0.2)(d)
     # second last output layer
-    d = Conv2D(filters=512, kernel_side=(4, 4),
+    d = Conv2D(filters=512, kernel_size=(4, 4),
                padding='same', kernel_initializer=init)(d)
     d = BatchNormalization()(d)
     d = LeakyReLU(alpha=0.2)(d)
     # patch output
-    d = Conv2D(filters=1, kernel_side=(4, 4),
+    d = Conv2D(filters=1, kernel_size=(4, 4),
                padding='same', kernel_initializer=init)(d)
     patch_out = Activation('sigmoid')(d)
     # define model
