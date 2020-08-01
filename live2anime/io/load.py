@@ -1,6 +1,3 @@
-#for real, all this is from https://machinelearningmastery.com/how-to-develop-a-pix2pix-gan-for-image-to-image-translation/
-#with minor modifications
-
 # load, split and scale the maps dataset ready for training
 import glob
 import numpy as np
@@ -22,7 +19,7 @@ def load_images(path, suffix, size=(256,256)):
 # load and prepare training images
 def load_real_samples(filename):
 	# load compressed arrays
-	data = load(filename)
+	data = np.load(filename)
 	# unpack arrays
 	X1, X2 = data['arr_0'], data['arr_1']
 	# scale from [0,255] to [-1,1]

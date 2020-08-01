@@ -1,6 +1,6 @@
 import numpy as np
 from matplotlib import pyplot
-from live2anime.dataprep.loading import load_images
+from live2anime.io.load import load_images
 
 # dataset path
 path = 'data/png_files/'

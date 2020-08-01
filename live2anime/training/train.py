@@ -1,6 +1,11 @@
+from live2anime.report.summarise import summarize_performance
+from live2anime.io.real_fake_samples import generate_real_samples, generate_fake_samples
+
+# on original paper number of epochs was 200
+
 # train pix2pix model
 def train(d_model, g_model, gan_model, dataset, n_epochs=100, n_batch=1):
-	# determine the output square shape of the discriminator
+    # determine the output square shape of the discriminator
 	n_patch = d_model.output_shape[1]
 	# unpack dataset
 	trainA, trainB = dataset

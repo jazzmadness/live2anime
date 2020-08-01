@@ -1,5 +1,13 @@
-#again, from https://machinelearningmastery.com/how-to-develop-a-pix2pix-gan-for-image-to-image-translation/
-#no need to reinvent the wheel
+from keras.initializers import RandomNormal
+from keras.models import Model
+from keras.models import Input
+from keras.layers import Conv2D
+from keras.layers import Conv2DTranspose
+from keras.layers import LeakyReLU
+from keras.layers import Activation
+from keras.layers import Concatenate
+from keras.layers import Dropout
+from keras.layers import BatchNormalization
 
 # define an encoder block
 def define_encoder_block(layer_in, n_filters, batchnorm=True):

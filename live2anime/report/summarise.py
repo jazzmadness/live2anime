@@ -1,3 +1,6 @@
+from live2anime.io.real_fake_samples import generate_real_samples, generate_fake_samples
+from matplotlib import pyplot
+
 # generate samples and save as a plot and save the model
 def summarize_performance(step, g_model, dataset, n_samples=3):
 	# select a sample of input images

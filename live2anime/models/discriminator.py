@@ -1,5 +1,12 @@
-# again, from https://machinelearningmastery.com/how-to-develop-a-pix2pix-gan-for-image-to-image-translation/
-# no need to reinvent the wheel
+from keras.optimizers import Adam
+from keras.initializers import RandomNormal
+from keras.models import Model
+from keras.models import Input
+from keras.layers import Conv2D
+from keras.layers import Activation
+from keras.layers import Concatenate
+from keras.layers import BatchNormalization
+from keras.layers import LeakyReLU
 
 # define the discriminator model
 def define_discriminator(image_shape):
@@ -12,30 +19,37 @@ def define_discriminator(image_shape):
     # concatenate images channel-wise
     merged = Concatenate()([in_src_image, in_target_image])
     # C64
-    d = Conv2D(filters=64, kernel_side=(4, 4), strides=(2, 2), padding='same', kernel_initializer=init)(merged)
+    d = Conv2D(filters=64, kernel_side=(4, 4),
+               strides=(2, 2), padding='same', kernel_initializer=init)(merged)
     d = LeakyReLU(alpha=0.2)(d)
     # C128
-    d = Conv2D(filters=128, kernel_side=(4, 4), strides=(2, 2), padding='same', kernel_initializer=init)(d)
+    d = Conv2D(filters=128, kernel_side=(4, 4),
+               strides=(2, 2), padding='same', kernel_initializer=init)(d)
     d = BatchNormalization()(d)
     d = LeakyReLU(alpha=0.2)(d)
     # C256
-    d = Conv2D(filters=256, kernel_side=(4, 4), strides=(2, 2), padding='same', kernel_initializer=init)(d)
+    d = Conv2D(filters=256, kernel_side=(4, 4),
+               strides=(2, 2), padding='same', kernel_initializer=init)(d)
     d = BatchNormalization()(d)
     d = LeakyReLU(alpha=0.2)(d)
     # C512
-    d = Conv2D(filters=512, kernel_side=(4, 4), strides=(2, 2), padding='same', kernel_initializer=init)(d)
+    d = Conv2D(filters=512, kernel_side=(4, 4),
+               strides=(2, 2), padding='same', kernel_initializer=init)(d)
     d = BatchNormalization()(d)
     d = LeakyReLU(alpha=0.2)(d)
     # second last output layer
-    d = Conv2D(filters=512, kernel_side=(4, 4), padding='same', kernel_initializer=init)(d)
+    d = Conv2D(filters=512, kernel_side=(4, 4),
+               padding='same', kernel_initializer=init)(d)
     d = BatchNormalization()(d)
     d = LeakyReLU(alpha=0.2)(d)
     # patch output
-    d = Conv2D(filters=1, kernel_side=(4, 4), padding='same', kernel_initializer=init)(d)
+    d = Conv2D(filters=1, kernel_side=(4, 4),
+               padding='same', kernel_initializer=init)(d)
     patch_out = Activation('sigmoid')(d)
     # define model
     model = Model([in_src_image, in_target_image], patch_out)
     # compile model
     opt = Adam(lr=0.0002, beta_1=0.5)
-    model.compile(loss='binary_crossentropy', optimizer=opt, loss_weights=[0.5])
+    model.compile(loss='binary_crossentropy', optimizer=opt,
+                  loss_weights=[0.5])
     return model
