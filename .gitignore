@@ -3,6 +3,8 @@ data/npz_files/*
 data/png_files/*
 #result files
 results/*
+#model files
+data/models/*
 #exceptions
 !data/npz_files/.gitkeep
 !data/png_files/.gitkeep
