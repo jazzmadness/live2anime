@@ -3,7 +3,7 @@ from matplotlib import pyplot
 
 # generate samples and save as a plot and save the model
 def summarize_performance(step, g_model, dataset, path_save_plot,
-						  path_safe_model, n_samples=3):
+						  path_save_model, n_samples=3):
 	# select a sample of input images
 	[X_realA, X_realB], _ = generate_real_samples(dataset, n_samples, 1)
 	# generate a batch of fake samples
