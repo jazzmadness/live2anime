@@ -2,7 +2,8 @@ from live2anime.io.real_fake_samples import generate_real_samples, generate_fake
 from matplotlib import pyplot
 
 # generate samples and save as a plot and save the model
-def summarize_performance(step, g_model, dataset, n_samples=3):
+def summarize_performance(step, g_model, dataset, path_save_plot,
+						  path_safe_model, n_samples=3):
 	# select a sample of input images
 	[X_realA, X_realB], _ = generate_real_samples(dataset, n_samples, 1)
 	# generate a batch of fake samples
@@ -27,10 +28,10 @@ def summarize_performance(step, g_model, dataset, n_samples=3):
 		pyplot.axis('off')
 		pyplot.imshow(X_realB[i])
 	# save plot to file
-	filename1 = 'plot_%06d.png' % (step+1)
+	filename1 = path_save_plot + 'plot_%06d.png' % (step+1)
 	pyplot.savefig(filename1)
 	pyplot.close()
 	# save the generator model
-	filename2 = 'model_%06d.h5' % (step+1)
+	filename2 = path_save_model + 'model_%06d.h5' % (step+1)
 	g_model.save(filename2)
 	print('>Saved: %s and %s' % (filename1, filename2))

@@ -4,7 +4,8 @@ from live2anime.io.real_fake_samples import generate_real_samples, generate_fake
 # on original paper number of epochs was 200
 
 # train pix2pix model
-def train(d_model, g_model, gan_model, dataset, n_epochs=100, n_batch=1):
+def train(d_model, g_model, gan_model, dataset, path_save_plot,
+		  path_safe_model, n_epochs=100, n_batch=1):
     # determine the output square shape of the discriminator
 	n_patch = d_model.output_shape[1]
 	# unpack dataset
@@ -29,4 +30,5 @@ def train(d_model, g_model, gan_model, dataset, n_epochs=100, n_batch=1):
 		print('>%d, d1[%.3f] d2[%.3f] g[%.3f]' % (i+1, d_loss1, d_loss2, g_loss))
 		# summarize model performance
 		if (i+1) % (bat_per_epo * 10) == 0:
-			summarize_performance(i, g_model, dataset)
+			summarize_performance(i, g_model, dataset,
+								  path_save_plot, path_save_model)
