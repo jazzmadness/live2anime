@@ -6,3 +6,4 @@ data/png_files/*
 !data/png_files/.gitkeep
 #byte compiled
 __pycache__/
+*.pyc
