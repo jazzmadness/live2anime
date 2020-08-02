@@ -67,6 +67,18 @@ def load_images(path, size=(256, 256)):
 
 	return np.asarray(pixel_list_lv_a), np.asarray(pixel_list_an)
 
+# load single image
+def load_image(filename, size=(256,256)):
+	# load image with the preferred size
+	pixels = load_img(filename, target_size=size)
+	# convert to numpy array
+	pixels = img_to_array(pixels)
+	# scale from [0,255] to [-1,1]
+	pixels = (pixels - 127.5) / 127.5
+	# reshape to 1 sample
+	pixels = np.expand_dims(pixels, 0)
+	return pixels
+
 # load and prepare training images
 def load_real_samples(filename):
 	# load compressed arrays
