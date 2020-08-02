@@ -5,12 +5,11 @@ from matplotlib import pyplot
 from live2anime.io.load import load_image
 
 def live2anime(img, model_version):
-
     # load source image
     src_image = load_image(img)
     print('Loaded', src_image.shape)
     # load model
-    model = load_model('model_' + version + '.h5')
+    model = load_model('data/models/model_' + model_version + '.h5')
     # generate image from source
     gen_image = model.predict(src_image)
     # scale from [-1,1] to [0,1]
@@ -19,3 +18,6 @@ def live2anime(img, model_version):
     pyplot.imshow(gen_image[0])
     pyplot.axis('off')
     pyplot.show()
+
+#example, running test.png on model version 007900
+live2anime('data/png_files/test.png', '007900')
