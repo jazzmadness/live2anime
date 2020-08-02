@@ -5,7 +5,7 @@ from live2anime.io.real_fake_samples import generate_real_samples, generate_fake
 
 # train pix2pix model
 def train(d_model, g_model, gan_model, dataset, path_save_plot,
-		  path_save_model, n_epochs=100, n_batch=1):
+		  path_save_model, n_epochs=5000, n_batch=1):
     # determine the output square shape of the discriminator
 	n_patch = d_model.output_shape[1]
 	# unpack dataset
