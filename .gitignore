@@ -1,9 +1,13 @@
 #data files
 data/npz_files/*
 data/png_files/*
+#result files
+results/*
 #exceptions
 !data/npz_files/.gitkeep
 !data/png_files/.gitkeep
 #byte compiled
 __pycache__/
 *.pyc
+#mac
+*.DS_store
