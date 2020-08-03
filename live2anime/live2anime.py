@@ -14,19 +14,23 @@ if gpus:
 		print(e)
 
 def live2anime(img, model_version):
-    # load source image
-    src_image = load_image(img)
-    print('Loaded', src_image.shape)
-    # load model
-    model = load_model('data/models/model_' + model_version + '.h5')
-    # generate image from source
-    gen_image = model.predict(src_image)
-    # scale from [-1,1] to [0,1]
-    gen_image = (gen_image + 1) / 2.0
-    # plot the image
-    pyplot.imshow(gen_image[0])
-    pyplot.axis('off')
-    pyplot.show()
+	# load source image
+	src_image = load_image(img)
+	print('Loaded', src_image.shape)
+	# load model
+	model = load_model('data/models/model_' + model_version + '.h5')
+	# generate image from source
+	gen_image = model.predict(src_image)
+	# scale from [-1,1] to [0,1]
+	gen_image = (gen_image + 1) / 2.0
+	# plot the image
+	pyplot.subplot(2, 1, 1)
+	pyplot.axis('off')
+	pyplot.imshow(src_image[0])
+	pyplot.subplot(2, 1, 2)
+	pyplot.axis('off')
+	pyplot.imshow(gen_image[0])
+	pyplot.show()
 
 #example, running test.png on model version 007900
 #live2anime('data/png_files/test.png', '007900')
