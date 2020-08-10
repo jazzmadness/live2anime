@@ -1,0 +1,23 @@
+# file name: environment.yml
+
+# Give your project an informative name
+name: 
+
+# Specify the conda channels that you wish to grab packages from, in order of priority.
+channels:
+- defaults
+- conda-forge
+- ericmjl
+
+# Specify the packages that you would like to install inside your environment. Version numbers are allowed, and conda will automatically use its dependency solver to ensure that all packages work with one another.
+dependencies:
+- python=3.7
+- conda
+- scipy
+- numpy
+- pandas
+- scikit-learn
+- xgboost
+# There are some packages which are not conda-installable. You can put the pip dependencies here instead.
+#- pip:
+#    - tqdm  # for example only, tqdm is actually available by conda.
